@@ -4,7 +4,7 @@ from django.http import HttpRequest
 from django.template.loader import render_to_string
 
 from lists.views import home_view
-
+from .models import Item
 class HomePageTest(TestCase):
 
     # def test_bad_math(self):
@@ -41,7 +41,7 @@ class ItemModelTest(TestCase):
     def test_saving_and_retriving_items(self):
         first_item = Item()
         first_item.text = 'The first (ever) item'
-        first_item.sav()
+        first_item.save()
 
         second_item = Item()
         second_item.text = 'Item the second'
@@ -52,5 +52,5 @@ class ItemModelTest(TestCase):
 
         first_saved_item = saved_items[0]
         second_saved_item = saved_items[1]
-        self.assertEqual(first_saved_item , 'The first (ever) item')
-        self.assertEqual(second_saved_item , 'Item the second')
+        self.assertEqual(first_saved_item.text , 'The first (ever) item')
+        self.assertEqual(second_saved_item.text , 'Item the second')
